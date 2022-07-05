@@ -59,29 +59,29 @@ function ListaCompleta() {
     }
 
     return (
-        <div>
-            <div className="button-label-input">
-                <label
-                htmlFor="criar_todo"
-                className="button-label">
-                    Adicionar nova tarefa
-                </label>
+        <div className="home-container">
+        <div className="list-container">
+            <div className="adicionar-container">
+            <div className="button-input">
             <input
             type="text"
             className="button-input"
-            id="criar_todo"
+            id="criar_tarefa"
+            placeholder="Adicionar tarefa"
             onChange={CreateTarefa}
             name="text"
             value={novaTarefa.descricao}
             />
-            </div>
-            <button
+             <button
             type="button"
             className="button-button"
             onClick={handleCreateTarefa}>
-                Adicionar novo todo
+                Adicionar nova tarefa
             </button>
-            <div>
+            </div>
+            </div>
+            
+            {/* <div className="">
                 <label
                 htmlFor="criar_todo"
                 className="button-label">
@@ -101,9 +101,9 @@ function ListaCompleta() {
             onClick={findOneTarefa}>
                 Procurar por ID
             </button>
-            </div>
+            </div> */}
 
-            <div>
+            <div className="map-container">
             {Tarefas.map((tarefas, index) => (
                 <div key={index} className="readAllTarefas">
                     <span>{tarefas.descricao}</span>
@@ -111,6 +111,7 @@ function ListaCompleta() {
                 </div>
             ))}
             </div>
+        </div>
         </div>
     )
 }

@@ -1,13 +1,53 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  background-color: #0f0f0f00;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+header{
+ display: flex;
+ justify-content: center;
+ padding-top: 20px;
+ padding-bottom: 20px;
+ font-size: 3rem;
+}
+
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.list-container {
+ min-height: 400px;
+ width: 300px;
+ border-radius: 20px;
+ border: solid 1px black;
+}
+
+.button-input{
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+}
+
+#criar_tarefa {
+  border-radius: 5px;
+}
+
+#criar_tarefa.button-input {
+  background-color: white;
+}
+
+.adicionar-container {
+  padding-top: 10px;
+  border-radius: 20px;
+}
+
+.button-button {
+  border-radius: 5px;
 }
