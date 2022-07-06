@@ -1,119 +1,63 @@
 import { useState, useEffect } from "react";
+import { billApi } from "../utils/api/bill.api";
 
 function ListaCompleta() {
-    const baseURL = 'http://localhost:8000/Tarefas';
 
-    const [ Tarefas, setTarefas ] = useState([])
+    const [ Tarefas, setTarefas ] = useState([]);
+    const [ Tarefa, setTarefa] = useState();
 
-    const [novaTarefa, setnovaTarefa ] = useState({
-        descricao: ""
-    })
-
-
-    async function create(Lista) {
-        const response = await fetch(baseURL, {
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            mode: 'cors',
-            body: JSON.stringify(Lista),
-    })
-    const novaTarefa = await response.json()
-    setTarefas([novaTarefa])
-    }
-
-    const CreateTarefa = (event) => {
-        setnovaTarefa({...novaTarefa, [event.target.name]: event.target.value})
-    }
-    const handleCreateTarefa = () => {
-        const tarefa_a_ser_criado = {...novaTarefa};
-        create(tarefa_a_ser_criado)
-        setnovaTarefa({
-            descricao: ""
-        })
-    }
-    console.log(novaTarefa)
-
-    async function readAllTarefas(){
-        const response = await fetch(baseURL)
-        const todos = await response.json()
-        setTarefas(todos)
-    }
-
-    useEffect(() => {
-        readAllTarefas()
-    }, [])
-
-    function deleteItem(index){
-        let tempArray=[...Tarefas]
-        tempArray.splice(index,1);
-  
-        setTarefas(tempArray);
+    async function getBills() {
+        const allBills = await billApi.getAllBills();
+        setTarefas(allBills);
       }
 
-      async function findOneTarefa(id){
-        const response = await fetch(`${baseURL}/${id}`)
-        const Tarefas = await response.json() 
-        setTarefas([Tarefas])
-    }
+      async function handleSubmit(event) {
+        event.preventDefault();
+        const bill = await billApi.createBill({descricao:event.target.tarefa.value})
+        setTarefas([...Tarefas, bill])
+      }
+    
+      useEffect(() => {
+        getBills()
+    }, [])
+
+    async function findById(event) {
+        event.preventDefault();
+        const billById = await billApi.getBillById(event.target.ID.value);
+        setTarefa(billById);
+      }
+      console.log(Tarefa)
 
     return (
         <div className="home-container">
-        <div className="list-container">
-            <div className="adicionar-container">
-            <div className="button-input">
-            <input
-            type="text"
-            className="button-input"
-            id="criar_tarefa"
-            placeholder="Adicionar tarefa"
-            onChange={CreateTarefa}
-            name="text"
-            value={novaTarefa.descricao}
-            />
-             <button
-            type="button"
-            className="button-button"
-            onClick={handleCreateTarefa}>
-                Adicionar nova tarefa
-            </button>
-            </div>
-            </div>
+        <div className="adicionar-container">
+            <form className="form" onSubmit={handleSubmit}>
+                <input type="text" name="tarefa" placeholder="Digite o nome da tarefa"></input>
+                <button type="submit">Adicionar Tarefa</button>
+            </form>
+        </div>
+        
             
-            {/* <div className="">
-                <label
-                htmlFor="criar_todo"
-                className="button-label">
-                    Adicionar nova tarefa
-                </label>
-            <input
-            type="text"
-            className="button-input"
-            id="criar_todo"
-            onChange={findOneTarefa}
-            name="text"
-            value={Tarefas.id}
-            />
-            <button
-            type="button"
-            className="button-button"
-            onClick={findOneTarefa}>
-                Procurar por ID
-            </button>
-            </div> */}
+            <div className="pesquisa-container">
+            <form onSubmit={findById}>
+            <input placeholder="Digite o ID" name="ID"></input>
+            <button type="submit">Pesquisar</button>  
+            </form>
+            </div>
 
-            <div className="map-container">
-            {Tarefas.map((tarefas, index) => (
+            <div className="map-container"> 
+            {Tarefa && Tarefa.descricao? <div>
+                <span>{Tarefa.descricao}</span>
+                </div>: Tarefas.map((tarefas, index) => (
                 <div key={index} className="readAllTarefas">
                     <span>{tarefas.descricao}</span>
-                    <button onClick={deleteItem}>Deletar</button>
                 </div>
             ))}
             </div>
         </div>
-        </div>
     )
+
+
 }
 
 export default ListaCompleta
