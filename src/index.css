@@ -20,14 +20,6 @@ header{
   flex-direction: column;
 }
 
-.list-container {
-  height: 400px;
-  width: 300px;
-  border-radius: 20px;
-  border: solid 1px black;
-  gap: 15px;
-}
-
 .button-input{
   display: flex;
   justify-items: center;
