@@ -1,7 +1,10 @@
 * {
   margin: 0;
   padding: 0;
-  background-color: #0f0f0f00;
+}
+
+body {
+  background-color: darkblue;
 }
 
 header{
@@ -20,30 +23,12 @@ header{
   flex-direction: column;
 }
 
-.button-input{
-  display: flex;
-  justify-items: center;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 5px;
-}
-
-#criar_tarefa {
-  border-radius: 5px;
-}
-
-#criar_tarefa.button-input {
-  background-color: white;
-}
-
 .adicionar-container {
   padding-top: 20px;
   border-radius: 5px;
-}
-
-.button-button {
-  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
 }
 
 .pesquisa-container {
@@ -55,11 +40,44 @@ header{
   padding-top: 20px;
 }
 
+.readAllTarefas {
+  display: flex;
+  justify-content: space-between;
+  border: solid 1px black;
+  padding: 10px;
+  border-radius: 10px;
+}
+
 .map-container {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 90%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  justify-items: center;
+  gap: 15px;
+  font-size: 2rem;
+}
+
+.geral {
+  min-height: 500px;
+  min-width: 720px;
+  width: 90vw;
+  border: solid 1px black;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  padding-top: 20px;
+  background-color: aliceblue;
+}
+
+.container-botoes{
+  font-size: 2rem;
+}
+
+input {
+  font-size: 2rem;
+}
+
+button {
+  font-size: 2rem;
 }

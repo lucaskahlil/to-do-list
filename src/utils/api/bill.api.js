@@ -1,12 +1,14 @@
 const defaultUrl = 'http://localhost:8000/Tarefas';
 
+const parseResponse = (response)  => response.json()
+
 export const billApi = {
-    getAllBills: async () => {
+    getAllTarefas: async () => {
       const req = await fetch(defaultUrl);
       const result = await req.json();
       return result;
     },
-    createBill: async (bill) => {
+    createTarefa: async (bill) => {
       const req = await fetch(defaultUrl, {
         method: "POST",
         body: JSON.stringify(bill),
@@ -20,5 +22,8 @@ export const billApi = {
       const result = await req.json();
       return result;
     },
+    deleteById: (id) => fetch(`${defaultUrl}/${id}`, {method: "DELETE"}).then(parseResponse)
   };
+  
+  
   
