@@ -1,4 +1,4 @@
-const defaultUrl = 'http://localhost:8000/Tarefas';
+const defaultUrl = 'https://to-do-list-server-kahlil.herokuapp.com/Tarefas';
 
 const parseResponse = (response)  => response.json()
 
